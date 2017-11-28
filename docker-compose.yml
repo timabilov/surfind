@@ -1,10 +1,20 @@
 version: '3'
-
+volumes:
+  postgres-data:
+    driver: local
 services:
   db:
     image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  redis:
+    image: redis:4-alpine
+    ports:
+      - "6379:6379"
   web:
-    build: .
+    image: stream555/surfind
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -12,5 +22,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
     environment:
       - PYTHONUNBUFFERED=0
+

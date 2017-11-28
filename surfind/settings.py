@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import redis
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -117,7 +119,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
+REDIS_POLL = redis.ConnectionPool(host='redis', port=6379, db=0,decode_responses=True)
+
+APPEND_SLASH = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
