@@ -17,4 +17,5 @@ class ContentViewSet(ModelViewSet):
         conn = redis.Redis(connection_pool=REDIS_POLL)
         obj = serializer.save()
         conn.set(obj.id, 'Obj created  %s ' % obj)
+
         return obj
