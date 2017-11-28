@@ -13,3 +13,7 @@ def test_content(rf):
 def test_dummy():
 
     assert 2 == 2
+
+def test_dummy2():
+
+    assert 2 == 2
