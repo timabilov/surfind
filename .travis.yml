@@ -17,7 +17,6 @@ before_install:
   - docker-compose --version
   - docker build . -t surfind
   - docker-compose -f docker-compose-ci.yml up -d
-  - sleep 10
 script:
 
   - docker-compose exec web pytest -v
